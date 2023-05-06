@@ -2,26 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+html {
+	@apply scroll-smooth;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	background: black;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	@apply min-h-screen text-white;
+
+	background: rgb(4, 4, 22);
+	background: linear-gradient(
+		30deg,
+		rgba(4, 4, 22, 1) 0%,
+		rgba(0, 0, 0, 1) 33%,
+		rgba(0, 0, 0, 1) 66%,
+		rgba(6, 5, 25, 1) 100%
+	);
+}
+
+::-webkit-scrollbar {
+	@apply h-[6px] w-[6px] lg:h-[10px] lg:w-[10px];
+}
+
+::-webkit-scrollbar-track {
+	@apply rounded-lg;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply rounded-lg bg-[#17171f];
+
+	&:hover {
+		@apply bg-[#1e1e29];
+	}
+}
+
+::selection {
+	@apply bg-slate-700/50;
+}
+
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		@apply text-text-light duration-150 ease-out;
+	}
+}
+
+@layer components {
+	.container {
+		@apply mx-auto px-2 md:px-4;
+	}
+
+	.dangerous-html a {
+		@apply font-medium text-accent-light;
+
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			transform: scaleX(0);
+			height: 1px;
+			bottom: 0;
+			left: 0;
+			background-color: currentColor;
+			transform-origin: bottom right;
+			transition: transform 0.25s ease-out;
+		}
+
+		&:hover::after {
+			transform: scaleX(1);
+			transform-origin: bottom left;
+		}
+	}
+}
+
+@layer utilities {
+	.bg-gradient {
+		background: linear-gradient(30deg, #5a657e, #767f8b);
+	}
+
+	.text-gradient {
+		background-color: #d1d5db;
+		background-image: linear-gradient(45deg, #808eaa, #d1d5db);
+		background-size: 100%;
+		background-clip: text;
+		-webkit-background-clip: text;
+		-moz-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		-moz-text-fill-color: transparent;
+	}
+
+	.outlined-text {
+		-moz-text-fill-color: transparent;
+		-webkit-text-fill-color: transparent;
+		-webkit-text-stroke: 1px #1d7ee0;
+	}
+
+	.link-underline {
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			transform: scaleX(0);
+			height: 1px;
+			bottom: 0;
+			left: 0;
+			background-color: currentColor;
+			transform-origin: bottom right;
+			transition: transform 0.25s ease-out;
+		}
+
+		&:hover::after {
+			transform: scaleX(1);
+			transform-origin: bottom left;
+		}
+	}
 }
