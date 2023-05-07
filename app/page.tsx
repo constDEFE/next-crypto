@@ -4,6 +4,8 @@ import Market from "@/modules/Market";
 import ChooseUs from "@/modules/ChooseUs";
 import { getAllCoins } from "@/utils/getters";
 
+export const revalidate = 60;
+
 const page = async () => {
 	const coins = await getAllCoins();
 

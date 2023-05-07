@@ -1,6 +1,8 @@
 import CoinDetail from "@/modules/CoinDetail";
 import { getCoinInfo } from "@/utils/getters";
 
+export const revalidate = 60;
+
 export const generateMetadata = async ({ params: { id } }: Props) => {
 	const coin = (await getCoinInfo(id)) as CoinDetail;
 
